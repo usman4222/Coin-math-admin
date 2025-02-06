@@ -112,6 +112,22 @@ const TableOne = () => {
         }
     };
 
+    const sanitizeAndFormatCoins = (coinsString) => {
+        const str = String(coinsString);
+    
+        const firstValidDecimalIndex = str.indexOf('.');
+    
+        let sanitizedCoins = str;
+    
+        if (firstValidDecimalIndex !== -1) {
+            sanitizedCoins = str.slice(0, firstValidDecimalIndex + 1) + 
+                             str.slice(firstValidDecimalIndex + 1).replace(/\./g, '');
+        }
+    
+        const numberValue = Number(sanitizedCoins);
+        return isNaN(numberValue) ? '0.00' : numberValue.toFixed(3);
+    };
+
     const csvHeaders = [
         { label: 'Wallet Address', key: 'baseWalletAddress' },
         { label: 'First Name', key: 'firstName' },
@@ -122,6 +138,7 @@ const TableOne = () => {
         { label: 'Coins', key: 'coins' },
         { label: 'Mining Rate', key: 'hourlyRate' },
         { label: 'Total Referrals', key: 'referralCount' },
+        { label: 'AirDrop Balance', key: 'airdropBalance' },
     ];
 
     return (
@@ -202,6 +219,7 @@ const TableOne = () => {
                                     <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Referral Code</th>
                                     <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Mining Amount</th>
                                     <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Mining Rate</th>
+                                    <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">AirDrop Balance</th>
                                     <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Total Referrals</th>
                                     <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">Actions</th>
                                 </tr>
@@ -228,10 +246,13 @@ const TableOne = () => {
                                             <p className="text-black dark:text-white">{user.referralCode}</p>
                                         </td>
                                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                                            <p className="text-black dark:text-white">{user.coins || 0}</p>
+                                            <p className="text-black dark:text-white">  {sanitizeAndFormatCoins(user.coins || '0')}</p>
                                         </td>
                                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                             <p className="text-black dark:text-white"> {user.hourlyRate || 0}</p>
+                                        </td>
+                                        <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                                            <p className="text-black dark:text-white"> {sanitizeAndFormatCoins(user.airdropBalance || 0)}</p>
                                         </td>
                                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                             <p className="text-black dark:text-white">{user.referralCount || 0}</p>

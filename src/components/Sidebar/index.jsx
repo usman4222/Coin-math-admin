@@ -8,7 +8,7 @@ import { HiOutlineUsers } from "react-icons/hi";
 import { MdChecklist } from "react-icons/md";
 import { TbArticle } from "react-icons/tb";
 import { GrArticle } from "react-icons/gr";
-import { RiMoneyDollarCircleLine } from 'react-icons/ri';
+import { RiMoneyDollarCircleLine, RiMoneyPoundCircleLine } from 'react-icons/ri';
 import { LuCoins } from 'react-icons/lu';
 
 
@@ -24,7 +24,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'
   );
 
-  // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {
       if (!sidebar.current || !trigger.current) return;
@@ -40,7 +39,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     return () => document.removeEventListener('click', clickHandler);
   });
 
-  // close if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }) => {
       if (!sidebarOpen || keyCode !== 27) return;
@@ -131,7 +129,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               {/* <!-- Menu Item Dashboard --> */}
 
               {/* <!-- Menu Item Calendar --> */}
-              <li>
+              {/* <li>
                 <NavLink
                   to="/adduser"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('adduser') &&
@@ -141,7 +139,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   <FaRegUser />
                   Add User
                 </NavLink>
-              </li>
+              </li> */}
               {/* <!-- Menu Item Calendar --> */}
 
               {/* <!-- Menu Item Profile --> */}
@@ -191,40 +189,28 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               {/* <!-- Menu Item Tables --> */}
 
               {/* <!-- Menu Item Settings --> */}
-              {/* <li>
+              <li>
                 <NavLink
-                  to="/allexpenses"
+                  to="/youtube"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('settings') &&
                     'bg-graydark dark:bg-meta-4'
                     }`}
                 >
                   <RiMoneyPoundCircleLine />
-                  All Expense
+                  Youtube Link
                 </NavLink>
-              </li> */}
-              {/* <!-- Menu Item Settings --> */}
-              {/* <li>
+              </li>
+              <li>
                 <NavLink
-                  to="/addrevenue"
+                  to="/task"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('settings') &&
                     'bg-graydark dark:bg-meta-4'
                     }`}
                 >
-                  <TbMoneybag />
-                  Add Revenue
+                  <RiMoneyPoundCircleLine />
+                  Daily Task Link
                 </NavLink>
-              </li> */}
-              {/* <li>
-                <NavLink
-                  to="/allrevenue"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('settings') &&
-                    'bg-graydark dark:bg-meta-4'
-                    }`}
-                >
-                  <BiMoneyWithdraw />
-                  All Revenue
-                </NavLink>
-              </li> */}
+              </li>
             </ul>
           </div>
         </nav>

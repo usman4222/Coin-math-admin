@@ -28,7 +28,6 @@ const Profile = () => {
           const userData = userDoc.data();
           setUser(userData);
 
-          // Ensure hourlyRate is a number
           const rate = userData.hourlyRate ? Number(userData.hourlyRate) : 0;
           setHourlyRate(rate);
         }
@@ -91,7 +90,6 @@ const Profile = () => {
     );
   }
 
-  // CSV export functionality
   const headers = [
     { label: 'First Name', key: 'firstName' },
     { label: 'Surname', key: 'surname' },
@@ -100,6 +98,7 @@ const Profile = () => {
     { label: 'Referral Code', key: 'referralCode' },
     { label: 'Referral By Code', key: 'referralByCode' },
     { label: 'Coins', key: 'coins' },
+    { label: 'AirDrop Balance', key: 'airdropBalance' },
   ];
 
   const csvData = [
@@ -111,6 +110,7 @@ const Profile = () => {
       referralCode: user.referralCode,
       referralByCode: user.referralByCode,
       coins: user.coins,
+      airdropBalance: user.airdropBalance,
     },
     ...referrals.map((referral) => ({
       firstName: referral.firstName,

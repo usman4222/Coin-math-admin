@@ -13,6 +13,8 @@ import AllBlogs from './components/Blogs/AllBogs';
 import UpdateBlog from './components/Blogs/UpdateBlog';
 import GuestRoute from './GuestRoute';
 import AddAd from './components/Ad/AddAd';
+import YoutubeLink from './components/YoutubeLink';
+import TaskLink from './components/TaskLink';
 
 function App() {
 
@@ -26,12 +28,14 @@ function App() {
           <Route path='/' element={<Dash />} />
           <Route path='/allemployees' element={<AllEmployees />} />
           <Route path='/adduser' element={<AddEmployee />} />
-          <Route path='/profile/:id' element={<Profile />} />
+          <Route path='/view/:id' element={<Profile />} />
           <Route path='/allblogs' element={<AllBlogs />} />
           <Route path='/update-user/:id' element={<UpdateUser />} />
           <Route path='/add-blog' element={<AddBlog />} />
           <Route path='/update-blog/:id' element={<UpdateBlog />} />
           <Route path='/add-ad' element={<AddAd />} />
+          <Route path='/youtube' element={<YoutubeLink />} />
+          <Route path='/task' element={<TaskLink />} />
           <Route path='*' element={<NotFound />} />
         </Route>
         <Route element={<GuestRoute />}>
